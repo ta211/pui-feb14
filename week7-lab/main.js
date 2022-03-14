@@ -1,4 +1,5 @@
 function Elecmon(name, age) {
+    this.species = "Elecmon";
     this.name = name;
     this.age = age;
     this.image_alt = "Elecmon, a small mammal digimon with long ears";
@@ -6,6 +7,7 @@ function Elecmon(name, age) {
 }
 
 function Piyomon(name, age) {
+    this.species = "Piyomon";
     this.name = name;
     this.age = age;
     this.image_alt = "Piyomon, a pink chick digimon with blue feathers and a silver foot ring";
@@ -13,6 +15,7 @@ function Piyomon(name, age) {
 }
 
 function Gryzmon(name, age) {
+    this.species = "Gryzmon";
     this.name = name;
     this.age = age;
     this.image_alt = "Gryzmon, a bear-like blue beast digimon with red claws and a crescent shape on its forehead";
@@ -51,5 +54,14 @@ function generateRandomAnimal() {
 
 function onLoad() {
     var animal = generateRandomAnimal();
-    
+    let img = document.getElementById("random-animal-img");
+    img.setAttribute("src", animal.image);
+    img.setAttribute("name", animal.name);
+    img.setAttribute("alt", animal.image_alt);
+    let name = document.getElementById("random-animal-name");
+    name.textContent = "This is "+animal.name;
+    let species = document.getElementById("random-animal-species");
+    species.textContent = "Species: "+animal.species;
+    let age = document.getElementById("random-animal-age");
+    age.textContent = "Age: "+animal.age;
 }
