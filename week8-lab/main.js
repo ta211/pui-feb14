@@ -53,40 +53,43 @@ function generateRandomAnimal() {
 }
 
 function onLoad() {
-    var savedAnimal = JSON.parse(localStorage.getItem("savedAnimal"));
-
-    var animal;
+    // There are 5 saved animals
+    for (let i = 0; i <= 4; i++) {
+        var savedAnimal = JSON.parse(localStorage.getItem("savedAnimal-"+i));
+        var animal;
     
-    if (savedAnimal) {
-        animal = savedAnimal;
-        document.getElementById("save-button").textContent = "Clear me";
-    } else {
-        animal = generateRandomAnimal();
-        document.getElementById("save-button").textContent = "Save me";
-    }
-
-    let img = document.getElementById("random-animal-img");
-    img.setAttribute("src", animal.image);
-    img.setAttribute("name", animal.name);
-    img.setAttribute("alt", animal.image_alt);
-    let name = document.getElementById("random-animal-name");
-    name.textContent = "This is "+animal.name;
-    let species = document.getElementById("random-animal-species");
-    species.textContent = "Species: "+animal.species;
-    let age = document.getElementById("random-animal-age");
-    age.textContent = "Age: "+animal.age;
-
-    document.getElementById("save-button").addEventListener("click", function() {
-        if (!savedAnimal) {
-            localStorage.setItem("savedAnimal", JSON.stringify(animal));
-
-            document.getElementById("save-button").textContent = "Clear me";
-            document.getElementById("feedback-msg").textContent = "Saved!";
+        if (savedAnimal) {
+            animal = savedAnimal;
+            console.log(savedAnimal);
+            document.getElementsByClassName("save-button")[i].textContent = "Clear me";
         } else {
-            localStorage.removeItem("savedAnimal");
-
-            document.getElementById("save-button").textContent = "Save me";
-            document.getElementById("feedback-msg").textContent = "Cleared!";
+            animal = generateRandomAnimal();
+            document.getElementsByClassName("save-button")[i].textContent = "Save me";
         }
-    })
+
+        let img = document.getElementsByClassName("random-animal-img")[i];
+        img.setAttribute("src", animal.image);
+        img.setAttribute("name", animal.name);
+        img.setAttribute("alt", animal.image_alt);
+        let name = document.getElementsByClassName("random-animal-name")[i];
+        name.textContent = "This is "+animal.name;
+        let species = document.getElementsByClassName("random-animal-species")[i];
+        species.textContent = "Species: "+animal.species;
+        let age = document.getElementsByClassName("random-animal-age")[i];
+        age.textContent = "Age: "+animal.age;
+
+        document.getElementsByClassName("save-button")[i].addEventListener("click", function() {
+            if (!savedAnimal) {
+                localStorage.setItem("savedAnimal-"+i, JSON.stringify(animal));
+    
+                document.getElementsByClassName("save-button")[i].textContent = "Clear me";
+                document.getElementsByClassName("feedback-msg")[i].textContent = "Saved!";
+            } else {
+                localStorage.removeItem("savedAnimal-"+i);
+    
+                document.getElementsByClassName("save-button")[i].textContent = "Save me";
+                document.getElementsByClassName("feedback-msg")[i].textContent = "Cleared!";
+            }
+        })
+    }
 }

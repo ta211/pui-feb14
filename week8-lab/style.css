@@ -5,8 +5,9 @@ body {
 .random-animal {
     margin: auto;
     text-align: center;
+    width: 20%;
 }
 
-#random-animal-img {
-    width: 300px;
+.random-animal-img {
+    width: 100%;
 }
