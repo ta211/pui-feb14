@@ -1,3 +1,7 @@
+body {
+    display: flex;
+}
+
 .random-animal {
     margin: auto;
     text-align: center;
